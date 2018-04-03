@@ -19,8 +19,21 @@ public class FunctionalInterface {
 				);
 		t.start();
 		
+		Runnable run = new Runnable() {
+			@Override
+			public void run() {
+				
+			}
+		};
+		
 		//2. Comparator interface
 		List<Student> list = new ArrayList<Student>();
 		Collections.sort(list, (Student s1, Student s2) -> { return s1.id>s2.id ? 1 : -1; });
+		
+		StringBuilder message = new StringBuilder();
+	    Runnable r = () -> System.out.println(message);
+	    message.append("Howdy, ");
+	    message.append("world!");
+	    r.run();
 	}
 }
