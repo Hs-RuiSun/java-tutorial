@@ -1,4 +1,4 @@
-package com.ruby.sun.socket;
+package com.ruby.sun.security;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
