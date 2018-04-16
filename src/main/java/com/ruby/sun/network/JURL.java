@@ -29,10 +29,13 @@ public class JURL {
 		}  
 		huc.disconnect(); */ 
 		
+		URL url = new URL("https://hwwebmail.mail.126.com/js6/main.jsp?sid=NAcTwGBokzjAoBQdLGoohkLhqMwRaJkP&df=unknow#module=mbox.ListModule%7C%7B%22fid%22%3A1%2C%22order%22%3A%22date%22%2C%22desc%22%3Atrue%7D");
+		System.out.println(url.getProtocol());
+		
 		/*InetAddress*/
-		InetAddress iad = InetAddress.getByName("www.javatpoint.com");
+		/*InetAddress iad = InetAddress.getByName("www.javatpoint.com");
 		System.out.println(iad.getHostAddress() + " " + iad.getHostName()
-				+ " " + iad.getLocalHost());
+				+ " " + iad.getLocalHost());*/
 		
 	}
 }

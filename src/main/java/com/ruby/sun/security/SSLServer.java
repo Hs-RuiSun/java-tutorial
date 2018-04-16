@@ -12,13 +12,14 @@ import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 
-public class JSSLSocket {
+public class SSLServer {
 	public static void main(String[] args) throws Exception {
-		System.setProperty("javax.net.ssl.keyStore", "lfkeystore2");
-	    System.setProperty("javax.net.ssl.keyStorePassword", "wshr.ut");
-
+		System.setProperty("javax.net.ssl.keyStore", "/C:/Users/ruby.sun/Downloads/keystore.jks");
+	    System.setProperty("javax.net.ssl.keyStorePassword", "password");
+	    
 	    SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 	    ServerSocket ss = ssf.createServerSocket(5432);
+
 	    while (true) {
 	      Socket s = ss.accept();
 	      SSLSession session = ((SSLSocket) s).getSession();
