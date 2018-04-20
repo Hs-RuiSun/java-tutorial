@@ -16,7 +16,7 @@ public class SSLClient {
 		System.setProperty("javax.net.ssl.trustStore", "/C:/Users/ruby.sun/Downloads/keystore.jks");
 
 		SSLSocketFactory ssf = (SSLSocketFactory) SSLSocketFactory.getDefault();
-		Socket s = ssf.createSocket("127.0.0.1", 8443);
+		Socket s = ssf.createSocket("127.0.0.1", 5432);
 
 		SSLSession session = ((SSLSocket) s).getSession();
 		Certificate[] cchain = session.getPeerCertificates();

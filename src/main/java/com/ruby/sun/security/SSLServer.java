@@ -1,23 +1,43 @@
 package com.ruby.sun.security;
 
-import java.io.IOException;
+import java.io.FileInputStream;
 import java.io.PrintStream;
 import java.math.BigInteger;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 
 public class SSLServer {
 	public static void main(String[] args) throws Exception {
-		System.setProperty("javax.net.ssl.keyStore", "/C:/Users/ruby.sun/Downloads/keystore.jks");
-	    System.setProperty("javax.net.ssl.keyStorePassword", "password");
+		String path = "/C:/Users/ruby.sun/Downloads/keystore.jks";
+		String password = "password";
+		/*System.setProperty("javax.net.ssl.keyStore", path);
+	    System.setProperty("javax.net.ssl.keyStorePassword", password);*/
+		
+		KeyStore ks = KeyStore.getInstance("JKS");
+		ks.load(new FileInputStream(path), password.toCharArray());
+		
+		KeyManagerFactory kmf = KeyManagerFactory.getInstance("PKIX");
+		kmf.init(ks, password.toCharArray());
+
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance("PKIX"); 
+		tmf.init(ks);
+
+		SSLContext sc = SSLContext.getInstance("TLS"); 
+		TrustManager[] trustManagers = tmf.getTrustManagers(); 
+		sc.init(kmf.getKeyManagers(), trustManagers, null); 
 	    
-	    SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
+	    SSLServerSocketFactory ssf = (SSLServerSocketFactory) sc.getServerSocketFactory().getDefault();
 	    ServerSocket ss = ssf.createServerSocket(5432);
 
 	    while (true) {
