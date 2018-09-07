@@ -1,32 +1,62 @@
 package com.ruby.sun.thread;
 
-public class JThread extends Thread{
-	public String name;
-	public JThread(String name) {
-		this.name = name;
-	}
-	
-	public void run() {
-		for(int i=0;i<5;i++) {
-			System.out.println(this.name + " " + i);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	public static void main(String[] args) {
-		JThread s1 = new JThread("thread 1");
-		JThread s2 = new JThread("thread 2");
-		JThread s3 = new JThread("thread 3");
-		s1.start();
-		try {
-			s1.join(1500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		s2.start();
-		s3.start();
-	}
+public class JThread {
+    // Display a message, preceded by the name of the current thread
+    static void threadMessage(String message) {
+        String threadName = Thread.currentThread().getName();
+        System.out.format("%s: %s%n", threadName, message);
+    }
+
+    private static class MessageLoop implements Runnable {
+        public void run() {
+            String importantInfo[] =
+                    {"Mares eat oats", "Does eat oats", "Little lambs eat ivy", "A kid will eat ivy too"};
+            try {
+                for (int i = 0; i < importantInfo.length; i++) {
+                    Thread.sleep(100);
+                    threadMessage(importantInfo[i]);
+                }
+            }
+            catch (InterruptedException e) {
+                threadMessage("I wasn't done!");
+            }
+        }
+    }
+
+    public static void main(String args[]) throws InterruptedException {
+
+        // Delay, in milliseconds before we interrupt MessageLoop thread (default one hour).
+        long patience = 1000 * 600;
+
+        // If command line argument present, gives patience in seconds.
+        if (args.length > 0) {
+            try {
+                patience = Long.parseLong(args[0]) * 1000;
+            }
+            catch (NumberFormatException e) {
+                System.err.println("Argument must be an integer.");
+                System.exit(1);
+            }
+        }
+
+        threadMessage("Starting MessageLoop thread");
+        long startTime = System.currentTimeMillis();
+        Thread t = new Thread(new MessageLoop());
+        t.start();
+
+        threadMessage("Waiting for MessageLoop thread to finish");
+        // loop until MessageLoop thread exits
+        while (t.isAlive()) {
+            threadMessage("Still waiting...");
+            // Wait maximum of 1 second for MessageLoop thread to finish.
+            t.join(1000);
+            if (((System.currentTimeMillis() - startTime) > patience) && t.isAlive()) {
+                threadMessage("Tired of waiting!");
+                t.interrupt();
+                // Shouldn't be long now wait indefinitely
+                t.join();
+            }
+        }
+        threadMessage("Finally!");
+    }
 }
