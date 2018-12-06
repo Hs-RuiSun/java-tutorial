@@ -13,26 +13,26 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
 public class SSLCertificate {
-	public static void main(String args[]) throws Exception {
-		System.setProperty("javax.net.ssl.trustStore", "/C:/Users/ruby.sun/Downloads/keystore.jks");
-	    
-		SSLSocketFactory factory = HttpsURLConnection.getDefaultSSLSocketFactory();
-		SSLSocket socket = (SSLSocket) factory.createSocket("127.0.0.1", 8443);
-		socket.startHandshake();
-		SSLSession session = socket.getSession();
-		java.security.cert.Certificate[] servercerts = session.getPeerCertificates();
+    public static void main(String args[]) throws Exception {
+        System.setProperty("javax.net.ssl.trustStore", "/C:/Users/ruby.sun/Downloads/keystore.jks");
 
-		List mylist = new ArrayList();
-		for (int i = 0; i < servercerts.length; i++) {
-			mylist.add(servercerts[i]);
-		}
+        SSLSocketFactory factory = HttpsURLConnection.getDefaultSSLSocketFactory();
+        SSLSocket socket = (SSLSocket) factory.createSocket("127.0.0.1", 8443);
+        socket.startHandshake();
+        SSLSession session = socket.getSession();
+        java.security.cert.Certificate[] servercerts = session.getPeerCertificates();
 
-		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		CertPath cp = cf.generateCertPath(mylist);
+        List mylist = new ArrayList();
+        for (int i = 0; i < servercerts.length; i++) {
+            mylist.add(servercerts[i]);
+        }
 
-		FileOutputStream f = new FileOutputStream("CertPath.dat");
-		ObjectOutputStream b = new ObjectOutputStream(f);
-		b.writeObject(cp);
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        CertPath cp = cf.generateCertPath(mylist);
 
-	}
+        FileOutputStream f = new FileOutputStream("CertPath.dat");
+        ObjectOutputStream b = new ObjectOutputStream(f);
+        b.writeObject(cp);
+
+    }
 }

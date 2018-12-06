@@ -5,39 +5,39 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Executor;
 
-public class MultithreadServer implements Runnable{
-    protected int          serverPort   = 8080;
+public class MultithreadServer implements Runnable {
+    protected int serverPort = 8080;
     protected ServerSocket serverSocket = null;
-    protected boolean      isStopped    = false;
-    protected Thread       runningThread= null;
+    protected boolean isStopped = false;
+    protected Thread runningThread = null;
 
-    public MultithreadServer(int port){
+    public MultithreadServer(int port) {
         this.serverPort = port;
     }
 
-    public void run(){
-        synchronized(this){
+    public void run() {
+        synchronized (this) {
             this.runningThread = Thread.currentThread();
         }
         openServerSocket();
-        while(! isStopped()){
+        while (!isStopped()) {
             Socket clientSocket = null;
             try {
                 clientSocket = this.serverSocket.accept();
             } catch (IOException e) {
-                if(isStopped()) {
-                    System.out.println("Server Stopped.") ;
+                if (isStopped()) {
+                    System.out.println("Server Stopped.");
                     return;
                 }
                 throw new RuntimeException(
-                    "Error accepting client connection", e);
+                        "Error accepting client connection", e);
             }
             new Thread(
-                new SocketRunnable(
-                    clientSocket, "Multithreaded Server")
+                    new SocketRunnable(
+                            clientSocket, "Multithreaded Server")
             ).start();
         }
-        System.out.println("Server Stopped.") ;
+        System.out.println("Server Stopped.");
     }
 
 
@@ -45,7 +45,7 @@ public class MultithreadServer implements Runnable{
         return this.isStopped;
     }
 
-    public synchronized void stop(){
+    public synchronized void stop() {
         this.isStopped = true;
         try {
             this.serverSocket.close();

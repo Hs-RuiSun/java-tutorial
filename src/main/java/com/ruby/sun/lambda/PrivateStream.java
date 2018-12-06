@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PrivateStream {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         IntStream.range(1, 4)
                 .forEach(System.out::println);
 

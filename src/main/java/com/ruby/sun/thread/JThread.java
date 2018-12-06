@@ -16,8 +16,7 @@ public class JThread {
                     Thread.sleep(100);
                     threadMessage(importantInfo[i]);
                 }
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 threadMessage("I wasn't done!");
             }
         }
@@ -32,8 +31,7 @@ public class JThread {
         if (args.length > 0) {
             try {
                 patience = Long.parseLong(args[0]) * 1000;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.err.println("Argument must be an integer.");
                 System.exit(1);
             }

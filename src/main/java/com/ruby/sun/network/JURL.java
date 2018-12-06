@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class JURL {
-	public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 		/*URL
 		URL url = new URL("http://google.com");
 		System.out.println(url.getHost() + " " + url.getPort() + " " + url.getProtocol() 
@@ -27,13 +27,13 @@ public class JURL {
 		for(int i=1;i<=8;i++){  
 			System.out.println(huc.getHeaderFieldKey(i)+" = "+huc.getHeaderField(i));  
 		}  
-		huc.disconnect(); */ 
-		
-		/*InetAddress*/
+		huc.disconnect(); */
+
+        /*InetAddress*/
 		/*InetAddress iad = InetAddress.getByName("www.javatpoint.com");
 		System.out.println(iad.getHostAddress() + " " + iad.getHostName()
 				+ " " + iad.getLocalHost());*/
-	}
-	
-	
+    }
+
+
 }

@@ -9,6 +9,7 @@ interface JInterfaceA {
     default void methodA() {
         System.out.println("methodA from interfaceA");
     }
+
     static void methodB() {
         System.out.println("methodB from interfaceA");
     }
@@ -18,22 +19,24 @@ interface JInterfaceB {
     default void methodA() {
         System.out.println("methodA from interfaceB");
     }
+
     static void methodB() {
         System.out.println("methodB from interfaceB");
     }
 }
 
-interface JInterfaceC extends JInterfaceA, JInterfaceB{
+interface JInterfaceC extends JInterfaceA, JInterfaceB {
     @Override
     default void methodA() {
         JInterfaceA.super.methodA();
     }
 }
 
-public class JMultipleImplementation implements JInterfaceA, JInterfaceB{
+public class JMultipleImplementation implements JInterfaceA, JInterfaceB {
     public static void main(String[] args) {
         JInterfaceA.methodB();
     }
+
     @Override
     public void methodA() {
         JInterfaceA.super.methodA();

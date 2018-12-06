@@ -6,17 +6,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LambdaStream {
-	public static void main(String[] args) {
-		Arrays.asList("red", "green", "blue")
+    public static void main(String[] args) {
+        Arrays.asList("red", "green", "blue")
                 .stream()
                 .sorted()
                 .findFirst()
                 .ifPresent(System.out::println);
-        
+
         //example of Stream.of with a filter 
         Stream.of("apple", "pear", "banana", "cherry", "apricot")
                 .filter(fruit -> {
-                  //  System.out.println("filter: " + fruit);
+                    //  System.out.println("filter: " + fruit);
                     return fruit.startsWith("a"); //predicate
                 })
                 //if the foreach is removed, nothing will print,

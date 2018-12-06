@@ -35,7 +35,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Fr24Connection extends URLConnection {
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private final static Logger LOGGER = LoggerFactory
             .getLogger(Fr24Connection.class);
 
@@ -57,11 +59,11 @@ public class Fr24Connection extends URLConnection {
     public Fr24Connection(URL url) {
         super(url);
     }
-    
+
     public static void main(String[] args) throws IOException {
-    	Fr24Connection con = new Fr24Connection(DEFAULT_CERTIFICATES_URL);
-    	con.connect();
-	}
+        Fr24Connection con = new Fr24Connection(DEFAULT_CERTIFICATES_URL);
+        con.connect();
+    }
 
     @Override
     public void connect() throws IOException {
@@ -127,7 +129,7 @@ public class Fr24Connection extends URLConnection {
     }
 
     private SSLSocket createSslSocket(TrustManager[] trustManagers,
-            String host, int port) throws IOException, UnknownHostException {
+                                      String host, int port) throws IOException, UnknownHostException {
         try {
             SSLContext sslContext = SSLContext.getInstance("TLSv1");
             sslContext.init(null, trustManagers, null);
@@ -136,7 +138,7 @@ public class Fr24Connection extends URLConnection {
             int timeout = (int) MILLISECONDS.convert(30, SECONDS);
             socket.connect(new InetSocketAddress(host, port), timeout);
             socket.setSoTimeout(timeout);
-            socket.setEnabledProtocols(new String[] { "TLSv1" });
+            socket.setEnabledProtocols(new String[]{"TLSv1"});
 
             // printSupportedCiphers(socket);
             // printEnabledCiphers(socket);
@@ -160,7 +162,7 @@ public class Fr24Connection extends URLConnection {
                 counter++;
             }
 
-            socket.setEnabledCipherSuites(new String[] { cipher });
+            socket.setEnabledCipherSuites(new String[]{cipher});
 
             // LOGGER.error(ciphers[counter]);
             // socket.setEnabledCipherSuites(new String[] { ciphers[counter]

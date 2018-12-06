@@ -3,6 +3,7 @@ package com.ruby.sun.jclass;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Ignore;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +16,18 @@ public class JCollection {
         byte[] des = new byte[100];
         System.arraycopy(des, 0, src, 0, src.length);
     }
-    
+
     @Test
     public void testConcatenateMultipleArrays() {
         String[] first = {"a"};
         String[] second = {"b"};
         //need extra dependency from apache common lang 
         String[] str3 = (String[]) ArrayUtils.addAll(first, second);
-        
+
         String[] result = Arrays.copyOf(first, first.length + second.length);
         System.arraycopy(second, 0, result, first.length, second.length);
     }
+
     @Test
     @Ignore
     public void testDeclareAndInstantiateListAndArray() {
@@ -35,11 +37,11 @@ public class JCollection {
         List<String> list2 = new ArrayList<String>(Arrays.asList("this", "is", "a", "list"));
         list2.add("is it immutable?"); //no
         List<String> list3 = Stream.of("a", "list").collect(Collectors.toList());
-        
+
         //declare and initialize an array
-        String[] strings1 = new String[] {};
+        String[] strings1 = new String[]{};
         String[] strings2 = {};
         String[] strings3 = new String[5];
     }
-    
+
 }

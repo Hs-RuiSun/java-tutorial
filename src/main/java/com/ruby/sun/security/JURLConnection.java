@@ -7,19 +7,19 @@ import java.net.URLConnection;
 
 public class JURLConnection extends URLConnection {
 
-	protected JURLConnection(URL arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
+    protected JURLConnection(URL arg0) {
+        super(arg0);
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
-	public void connect() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public static void main(String[] args) throws Exception {
-		JURLConnection urlConnection = new JURLConnection(new URL("www.google.com"));
-		urlConnection.connect();
-	}
+    @Override
+    public void connect() throws IOException {
+        // TODO Auto-generated method stub
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        JURLConnection urlConnection = new JURLConnection(new URL("www.google.com"));
+        urlConnection.connect();
+    }
 }

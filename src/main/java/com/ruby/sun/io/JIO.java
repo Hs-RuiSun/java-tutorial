@@ -21,13 +21,13 @@ public class JIO {
             new DataInputStream(in).readFully(bytes);
             new DataInputStream(in).read(bytes);
             in.read(bytes);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void testFile() throws IOException {        
+    public void testFile() throws IOException {
         //read file into byte array
         File file = new File("file/data.txt");
         byte[] bytes = Files.readAllBytes(file.toPath());
@@ -35,5 +35,5 @@ public class JIO {
         System.out.println(new String(bytes, "UTF-8"));  //read data
         System.out.println(Arrays.toString(bytes));  //[114, 101, 97, 100, 32, 100, 97, 116, 97]
     }
-    
+
 }
