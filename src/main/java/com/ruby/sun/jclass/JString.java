@@ -2,6 +2,10 @@ package com.ruby.sun.jclass;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Arrays;
 
 public class JString {
@@ -16,5 +20,9 @@ public class JString {
             field = field.replaceAll("(\n|\r)", "yyy");
         }
         System.out.println(Arrays.toString(fields));
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new FileReader(new File("/c/Users/ruby.sun/Downloads/")));
     }
 }
