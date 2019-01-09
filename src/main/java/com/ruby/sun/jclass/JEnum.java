@@ -30,5 +30,6 @@ public class JEnum {
 
     public static void main(String[] args) {
         System.out.println(Day.getValues(Day.SATURDAY));
+        System.out.println(Day.SATURDAY.elementName);
     }
 }
