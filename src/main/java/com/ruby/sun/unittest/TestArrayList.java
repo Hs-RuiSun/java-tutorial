@@ -1,9 +1,9 @@
 package com.ruby.sun.unittest;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import java.util.ArrayList;
 
 public class TestArrayList {

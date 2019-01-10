@@ -1,8 +1,9 @@
 package com.ruby.sun.jclass;
 
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
