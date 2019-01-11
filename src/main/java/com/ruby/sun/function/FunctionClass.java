@@ -1,6 +1,5 @@
-package com.ruby.sun.lambda;
+package com.ruby.sun.function;
 
-import java.util.Date;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;

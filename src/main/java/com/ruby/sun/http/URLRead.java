@@ -1,4 +1,4 @@
-package com.ruby.sun.unittest;
+package com.ruby.sun.http;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
