@@ -1,4 +1,4 @@
-package com.ruby.sun.network;
+package com.ruby.sun.http;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

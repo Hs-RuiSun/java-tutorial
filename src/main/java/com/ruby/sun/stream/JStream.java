@@ -1,4 +1,4 @@
-package com.ruby.sun.lambda;
+package com.ruby.sun.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;

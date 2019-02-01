@@ -1,4 +1,4 @@
-package com.ruby.sun.lambda;
+package com.ruby.sun.function;
 
 import java.util.ArrayList;
 import java.util.Collections;
