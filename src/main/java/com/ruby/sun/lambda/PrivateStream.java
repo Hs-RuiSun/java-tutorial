@@ -1,4 +1,4 @@
-package com.ruby.sun.stream;
+package com.ruby.sun.lambda;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

@@ -1,4 +1,4 @@
-package com.ruby.sun.function;
+package com.ruby.sun.lambda;
 
 public class Book {
     private String title;

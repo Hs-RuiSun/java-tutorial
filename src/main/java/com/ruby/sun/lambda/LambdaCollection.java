@@ -1,6 +1,4 @@
-package com.ruby.sun.stream;
-
-import com.ruby.sun.function.Book;
+package com.ruby.sun.lambda;
 
 import java.util.Arrays;
 import java.util.Collection;
