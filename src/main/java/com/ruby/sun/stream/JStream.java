@@ -2,79 +2,84 @@ package com.ruby.sun.stream;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 public class JStream {
+    private List<Book> books = Arrays.asList(new Book("book1", "Ra", "Riggs", 1),
+            new Book("book2", "JK", "Rowling", 2),
+            new Book("book3", "Dr", "Seuss", 3));
+
     @Test
-    public void replace(){
-        String[] values = {"German", "English", "French"};
-        List<String> arrayToList = Arrays.asList(values);
-        /* jdk1.8 add replaceAll(UnaryOperator<E> operator)
-			stores the new value back into the original collection */
-        arrayToList.replaceAll(value -> value + ",");
-        assertArrayEquals(arrayToList.toArray(), values);
-        assertArrayEquals(arrayToList.toArray(), new String[]{"German,", "English,", "French,"});
+    public void testDoubleColon(){
 
-        /* 1. map
-         * The stream system returns a new collection rather than changing the original.
-         */
-        values = new String[]{"German", "English", "French"};
-        arrayToList = Arrays.asList(values);
-        List<String> newValues = arrayToList.stream().map(value -> value + ",").collect(Collectors.toList());
-        assertFalse(Arrays.equals(newValues.toArray(), values));
-        assertArrayEquals(newValues.toArray(), new String[]{"German,", "English,", "French,"});
-
-        /* 2. forEach
-         * doesn't return a stream, so use it
-         */
-        arrayToList.stream().map(value -> value + ",").forEach(System.out::println);
     }
 
-    public static void main(String[] args) {
-        /*
-         * 3. filter
-         * take a value and return a boolean
-         */
-        Stream.of(0, 1, 2, 3, 4)
-                .filter(n -> n > 2)
-                .forEach(System.out::println);
-        Predicate<Integer> smaller = n -> n < 2;
-        Stream.of(1, 2, 3, 4, 5).filter(smaller.negate()).forEach(System.out::println);
+    /**
+     * map(Function f): return a stream consisting of the results of applying the given function to the elements of
+     * this stream
+     */
+    @Test
+    public void testMapStream() {
+        assertArrayEquals(new String[] {"RIGGS", "ROWLING", "SEUSS"},
+                books.stream().map(book -> book.getAuthorLName().toUpperCase()).toArray());
+        assertArrayEquals(new String[] {"Riggs", "Rowling", "Seuss"},
+                books.stream().map(Book::getAuthorLName).toArray());
+        assertEquals(6, books.stream().mapToInt(Book::getPages).sum());
+    }
 
-        /*
-         * 4. collect
-         * convert stream into a List or Set
-         */
-        Stream.of("Who", "are", "you?").collect(Collectors.joining(" "));
+    /**
+     * filter(Predicate p): returns a stream consisting of the elements of this stream that match the given predicate.
+     */
+    @Test
+    public void testFilterStream() {
+        books.stream().filter(book -> book.getPages() > 100)
+                .findAny()
+                .ifPresent(System.out::println);
+    }
 
-        /*
-         * 5. reduce
-         * sum(1, sum(2, sum(3, 0)))
-         */
+    @Test
+    public void testSortStream(){
+        books.stream()
+                .map(Book::getPages)
+                .sorted((c1, c2) -> c1 - c2).forEach(System.out::println);
+        Stream.of("red", "green", "blue")
+                .sorted()
+                .findFirst()
+                .ifPresent(System.out::println);
+    }
+
+    @Test
+    public void testCollectStream(){
+        assertEquals("Riggs, Rowling, Seuss",
+                books.stream().map(Book::getAuthorLName).collect(Collectors.joining(", ")));
+
+        books.stream().map(book -> book.getAuthorLName().toUpperCase()).collect(Collectors.toList());
+
+        //reduce
         Integer sum = Stream.of(1, 2, 3).reduce(0, Integer::sum);
 
-        /*
-         * 6. sorted
-         */
-        Stream.of(3, 2, 4, 0).sorted((c1, c2) -> c1 - c2).forEach(System.out::println);
+        //sort
+
+
+        //other
+        books.stream()
+                .mapToInt(Book::getPages)
+                .average()
+                .ifPresent(System.out::println);
+
 
     }
 
-
-    public static List<Integer> createList() {
-        List<Integer> list = new ArrayList<Integer>();
-        list = Arrays.asList(1, 2, 3, 4);
-        return list;
+    @Test
+    public void testPrimitiveStream(){
+        IntStream.range(1, 4)
+                .forEach(System.out::println);
     }
 }
-
