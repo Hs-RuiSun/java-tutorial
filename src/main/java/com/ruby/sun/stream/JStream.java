@@ -1,5 +1,7 @@
 package com.ruby.sun.stream;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -9,21 +11,36 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
+
 public class JStream {
-    public static void main(String[] args) {
-        List<Integer> list = createList();
-		/* jdk1.8 add replaceAll(UnaryOperator<E> operator)
+    @Test
+    public void replace(){
+        String[] values = {"German", "English", "French"};
+        List<String> arrayToList = Arrays.asList(values);
+        /* jdk1.8 add replaceAll(UnaryOperator<E> operator)
 			stores the new value back into the original collection */
-        list.replaceAll(n -> n * 2);
+        arrayToList.replaceAll(value -> value + ",");
+        assertArrayEquals(arrayToList.toArray(), values);
+        assertArrayEquals(arrayToList.toArray(), new String[]{"German,", "English,", "French,"});
+
         /* 1. map
          * The stream system returns a new collection rather than changing the original.
          */
-        list.stream().map(n -> n * 2).collect(Collectors.toList());
+        values = new String[]{"German", "English", "French"};
+        arrayToList = Arrays.asList(values);
+        List<String> newValues = arrayToList.stream().map(value -> value + ",").collect(Collectors.toList());
+        assertFalse(Arrays.equals(newValues.toArray(), values));
+        assertArrayEquals(newValues.toArray(), new String[]{"German,", "English,", "French,"});
 
         /* 2. forEach
          * doesn't return a stream, so use it
          */
-        list.stream().map(n -> n + 2).forEach(System.out::println);
+        arrayToList.stream().map(value -> value + ",").forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
         /*
          * 3. filter
          * take a value and return a boolean
