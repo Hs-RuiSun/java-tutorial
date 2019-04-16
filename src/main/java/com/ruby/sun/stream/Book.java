@@ -6,6 +6,10 @@ public class Book {
     private String authorLName;
     private int pages;
 
+    public Book(String title){
+        new Book(title, "", "", 0);
+    }
+
     public Book(String title, String authorFName, String authorLName, int pages) {
         this.title = title;
         this.authorFName = authorFName;

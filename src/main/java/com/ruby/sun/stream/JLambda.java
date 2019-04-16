@@ -7,12 +7,30 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Lambda
  * is Java's first step into functional programming
  */
 public class JLambda {
+    /**
+     * double colon/method reference operator::
+     */
+    @Test
+    public void testDoubleColon(){
+        //static method
+        Stream.of(new Book("book1", "Ra", "Riggs", 1),
+                new Book("book2", "JK", "Rowling", 2))
+                .map(Book::getAuthorFName)  //instance method of an arbitrary object of a particular type
+                .forEach(System.out::println); //instance method
+        //constructor
+        Stream.of("book1", "book2").forEach(Book::new);
+    }
+
     @Test
     public void testRunnableComparator() {
         Runnable run = new Runnable() {

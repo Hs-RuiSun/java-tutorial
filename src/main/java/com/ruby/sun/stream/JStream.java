@@ -2,24 +2,22 @@ package com.ruby.sun.stream;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class JStream {
     private List<Book> books = Arrays.asList(new Book("book1", "Ra", "Riggs", 1),
             new Book("book2", "JK", "Rowling", 2),
-            new Book("book3", "Dr", "Seuss", 3));
-
-    @Test
-    public void testDoubleColon(){
-
-    }
+            new Book("book3", "JK", "Rowling", 5),
+            new Book("book4", "Dr", "Seuss", 4));
 
     /**
      * map(Function f): return a stream consisting of the results of applying the given function to the elements of
@@ -49,37 +47,49 @@ public class JStream {
         books.stream()
                 .map(Book::getPages)
                 .sorted((c1, c2) -> c1 - c2).forEach(System.out::println);
+        books.stream()
+                .sorted(Comparator.comparing(Book::getAuthorFName))
+                .sorted(Comparator.comparingInt(Book::getPages))
+                .forEach(System.out::print);
         Stream.of("red", "green", "blue")
                 .sorted()
                 .findFirst()
                 .ifPresent(System.out::println);
     }
 
+    /**
+     * Collectors: https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
+     */
     @Test
     public void testCollectStream(){
-        assertEquals("Riggs, Rowling, Seuss",
-                books.stream().map(Book::getAuthorLName).collect(Collectors.joining(", ")));
+        assertEquals("Riggs, Rowling, Rowling, Seuss",
+                books.stream().map(Book::getAuthorLName).collect(joining(", ")));
 
-        books.stream().map(book -> book.getAuthorLName().toUpperCase()).collect(Collectors.toList());
+        assertEquals("start Riggs, Rowling, Rowling, Seuss end",
+                books.stream().map(Book::getAuthorLName).collect(joining(", ", "start ", " end")));
 
-        //reduce
-        Integer sum = Stream.of(1, 2, 3).reduce(0, Integer::sum);
+        assertEquals(3, books.stream().map(Book::getAuthorLName).collect(toSet()).size());
 
-        //sort
+        assertEquals(4, books.stream().map(book -> book.getAuthorLName().toUpperCase()).collect(toList()).size());
 
+        System.out.println(books.stream().collect(Collectors.groupingBy(Book::getAuthorFName)));
 
-        //other
-        books.stream()
-                .mapToInt(Book::getPages)
-                .average()
-                .ifPresent(System.out::println);
+        System.out.println(books.stream().collect(Collectors.groupingBy(Book::getAuthorFName, Collectors.summarizingInt(Book::getPages))));
 
+        System.out.println(books.stream().collect(Collectors.partitioningBy(book -> book.getPages()>2)));
 
     }
 
     @Test
+    public void testReduceStream(){
+        assertEquals(12,  books.stream().map(Book::getPages).reduce(0, Integer::sum).intValue());
+        assertEquals(3, books.stream().mapToInt(Book::getPages).average().getAsDouble(), 0);
+    }
+
+    @Test
     public void testPrimitiveStream(){
-        IntStream.range(1, 4)
-                .forEach(System.out::println);
+        IntStream.range(1, 4).forEach(System.out::print);
+        (new Random()).ints(5, 0, 100).forEach(System.out::print);
+        Pattern.compile(", ").splitAsStream("a, b, c").forEach(System.out::print);
     }
 }
