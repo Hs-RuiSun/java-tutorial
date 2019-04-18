@@ -2,13 +2,11 @@ package com.ruby.sun.stream;
 
 import org.junit.Test;
 
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
+import java.util.Optional;
+import java.util.function.*;
 import java.util.stream.Stream;
+
+import static org.junit.Assert.*;
 
 /**
  * one interface with only one method
@@ -16,7 +14,41 @@ import java.util.stream.Stream;
  */
 public class JFunctional {
     @Test
-    public void testPredicate(){
+    public void testIntFunction(){
+        IntFunction array = t -> new Book[]{};
+        IntFunction bookArray = Book[]::new;
+        assertTrue(array.apply(3) instanceof Book[]);
+        Function<Book, String> funcBookToString = Book::getAuthorLName;
+        Function<String, String> funcStringToString = String::toUpperCase;
+        BiFunction<String, String, Integer> f = (string1, string2) -> string1.length() + string2.length();
+    }
+
+    /**
+     * represent a type-level solution for representing optional values instead of null references
+     */
+    @Test
+    public void testOptional() {
+        Optional<String> empty = Optional.empty();
+        assertTrue(empty.isEmpty());
+        Optional<String> optional = Optional.of("optional");
+        assertEquals("optional", optional.get());
+        //Optional.of(null); //NullPointerException
+        assertTrue(Optional.ofNullable(null).isEmpty()); //isEmpty is from JDK 11
+        assertFalse(Optional.ofNullable(null).isPresent());
+
+        Optional.of("optional").ifPresent(System.out::println); //conditional action with ifPresent
+        assertEquals("empty", Optional.ofNullable(null).orElse("empty")); //default value with orElse
+        assertEquals("empty", Optional.ofNullable(null).orElseGet(() -> "empty")); //default value with orElse
+        assertTrue(Optional.ofNullable(100)
+                .filter(value -> value > 10)
+                .filter(value -> value < 200).
+                        isPresent());
+        assertFalse(Optional.ofNullable((Integer) null).filter(value -> value > 10).isPresent());
+        Optional.of(new Book("book2", "JK", "Rowling", 2)).map(Book::getAuthorFName).orElse("");
+    }
+
+    @Test
+    public void testPredicate() {
         Predicate<Integer> smaller = n -> n < 2;
         Stream.of(1, 2, 3, 4, 5).filter(smaller.negate()).forEach(System.out::println);
     }

@@ -25,11 +25,11 @@ public class JStream {
      */
     @Test
     public void testMapStream() {
-        assertArrayEquals(new String[] {"RIGGS", "ROWLING", "SEUSS"},
+        assertArrayEquals(new String[] {"RIGGS", "ROWLING", "ROWLING", "SEUSS"},
                 books.stream().map(book -> book.getAuthorLName().toUpperCase()).toArray());
-        assertArrayEquals(new String[] {"Riggs", "Rowling", "Seuss"},
+        assertArrayEquals(new String[] {"Riggs", "Rowling", "Rowling", "Seuss"},
                 books.stream().map(Book::getAuthorLName).toArray());
-        assertEquals(6, books.stream().mapToInt(Book::getPages).sum());
+        assertEquals(12, books.stream().mapToInt(Book::getPages).sum());
     }
 
     /**

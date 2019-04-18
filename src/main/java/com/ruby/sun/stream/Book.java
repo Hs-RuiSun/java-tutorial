@@ -6,8 +6,10 @@ public class Book {
     private String authorLName;
     private int pages;
 
+    public Book() { this.title = "default title"; }
+
     public Book(String title){
-        new Book(title, "", "", 0);
+        this.title = title;
     }
 
     public Book(String title, String authorFName, String authorLName, int pages) {
@@ -21,9 +23,7 @@ public class Book {
         return title;
     }
 
-    public String getAuthorFName() {
-        return authorFName;
-    }
+    public String getAuthorFName() { return authorFName; }
 
     public String getAuthorLName() { return authorLName;}
 
