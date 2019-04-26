@@ -29,11 +29,11 @@ public class JFunctional {
     @Test
     public void testOptional() {
         Optional<String> empty = Optional.empty();
-        assertTrue(empty.isEmpty());
+        //assertTrue(empty.isEmpty());
         Optional<String> optional = Optional.of("optional");
         assertEquals("optional", optional.get());
         //Optional.of(null); //NullPointerException
-        assertTrue(Optional.ofNullable(null).isEmpty()); //isEmpty is from JDK 11
+        //assertTrue(Optional.ofNullable(null).isEmpty()); //isEmpty is from JDK 11
         assertFalse(Optional.ofNullable(null).isPresent());
 
         Optional.of("optional").ifPresent(System.out::println); //conditional action with ifPresent
