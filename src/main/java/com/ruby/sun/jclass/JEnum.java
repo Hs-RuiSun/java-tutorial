@@ -9,6 +9,7 @@ enum Day {
     SATURDAY("Saturday", 6),
     SUNDAY("Sunday", 7);
 
+
     String elementName;
     int number;
 
