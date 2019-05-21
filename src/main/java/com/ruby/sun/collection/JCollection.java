@@ -30,28 +30,28 @@ public class JCollection {
      */
     @Test
     public void testImmutable(){
-        String[] array = new String[]{"a", "b", "c"};
-
-        List<String> list1 = Arrays.asList(array);
-        //list1.add("d");// UnsupportedOperationException
-        assertArrayEquals(new String[]{"a", "b", "c"}, list1.toArray());
-        array[0] = "d";
-        assertArrayEquals(new String[]{"d", "b", "c"}, list1.toArray());
-
-        List<String> ilist1 = List.of(array);
-        assertArrayEquals(new String[]{"d", "b", "c"}, ilist1.toArray());
-        array[0] = "a";
-        assertArrayEquals(new String[]{"d", "b", "c"}, ilist1.toArray());
-
-        List<String> list2 = new ArrayList<>();
-        list2.add("a");
-        list2.add("b");
-        List<String> ilist2 = Collections.unmodifiableList(list2);
-        assertArrayEquals(new String[]{"a", "b"}, ilist2.toArray());
-        list2.add("c");
-        //ilist2.add("e"); //UnsupportedOperationException
-        assertArrayEquals(new String[]{"a", "b", "c"}, ilist2.toArray());
-    }
+//        String[] array = new String[]{"a", "b", "c"};
+//
+//        List<String> list1 = Arrays.asList(array);
+//        //list1.add("d");// UnsupportedOperationException
+//        assertArrayEquals(new String[]{"a", "b", "c"}, list1.toArray());
+//        array[0] = "d";
+//        assertArrayEquals(new String[]{"d", "b", "c"}, list1.toArray());
+//
+//        List<String> ilist1 = List.of(array);
+//        assertArrayEquals(new String[]{"d", "b", "c"}, ilist1.toArray());
+//        array[0] = "a";
+//        assertArrayEquals(new String[]{"d", "b", "c"}, ilist1.toArray());
+//
+//        List<String> list2 = new ArrayList<>();
+//        list2.add("a");
+//        list2.add("b");
+//        List<String> ilist2 = Collections.unmodifiableList(list2);
+//        assertArrayEquals(new String[]{"a", "b"}, ilist2.toArray());
+//        list2.add("c");
+//        //ilist2.add("e"); //UnsupportedOperationException
+//        assertArrayEquals(new String[]{"a", "b", "c"}, ilist2.toArray());
+}
 
     @Test
     public void testList(){
@@ -77,7 +77,7 @@ public class JCollection {
         assertEquals(4, numbers.size());
         assertArrayEquals(new Object[]{1,2,3,4}, numbers.toArray()); //sort automatically ??
 
-        Set<String> set = new HashSet<>(){{add("a"); add("b"); add("c");}};
+        //Set<String> set = new HashSet<>(){{add("a"); add("b"); add("c");}};
     }
 
     @Test
