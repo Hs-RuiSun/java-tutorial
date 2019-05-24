@@ -2,10 +2,10 @@ package com.ruby.sun.datastructure;
 
 import java.util.List;
 
-public class NaryTreeNode {
+public class Node {
     int val;
-    List<NaryTreeNode> children;
-    NaryTreeNode(int val, List<NaryTreeNode> children){
+    List<Node> children;
+    Node(int val, List<Node> children){
         this.val = val;
         this.children = children;
     }
