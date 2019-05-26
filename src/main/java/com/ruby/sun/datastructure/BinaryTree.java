@@ -2,12 +2,13 @@ package com.ruby.sun.datastructure;
 
 public class BinaryTree {
     public static void main(String[] args) {
-        int[] data = new int[]{10,5,15,3,7,18};
-        BinaryTreeNode root = buildBinaryTree(data);
+        int[] data = new int[]{10,2,15,3, 9, 7,18,13};
+        TreeNode root = buildBinaryTree(data);
+        System.out.println(BinaryTreeTraversal.inorderTraversal(root));
     }
 
-    public static BinaryTreeNode buildBinaryTree(int[] data){
-        BinaryTreeNode root = null;
+    public static TreeNode buildBinaryTree(int[] data){
+        TreeNode root = null;
         for(int i=0;i<data.length;i++){
             //root = recursiveInsert(root, data[i]);
         	root = insert(root, data[i]);
@@ -16,9 +17,9 @@ public class BinaryTree {
         return root;
     }
 
-    private static BinaryTreeNode recursiveInsert(BinaryTreeNode root, int val) {
+    private static TreeNode recursiveInsert(TreeNode root, int val) {
         if (root == null) {
-            return new BinaryTreeNode(val);
+            return new TreeNode(val);
         }
         if (val < root.val) {
             root.left = recursiveInsert(root.left, val);
@@ -28,13 +29,13 @@ public class BinaryTree {
         return root;
     }
     
-    private static BinaryTreeNode insert(BinaryTreeNode root, int val) {
+    private static TreeNode insert(TreeNode root, int val) {
     	if(root == null) {
-    		return new BinaryTreeNode(val);
+    		return new TreeNode(val);
     	}
-    	BinaryTreeNode node = new BinaryTreeNode(val);
-        BinaryTreeNode parent = null;
-        BinaryTreeNode current = root;
+    	TreeNode node = new TreeNode(val);
+        TreeNode parent = null;
+        TreeNode current = root;
         while (current != null) {
             parent = current;
             if(current.val > val) {
@@ -53,14 +54,14 @@ public class BinaryTree {
     	return root;
     }
 
-    private static BinaryTreeNode insertWithDuplicate(BinaryTreeNode root, int val){
-        BinaryTreeNode node = new BinaryTreeNode(val, 1);
+    private static TreeNode insertWithDuplicate(TreeNode root, int val){
+        TreeNode node = new TreeNode(val, 1);
         if(root == null){
             root = node;
             return root;
         }
-        BinaryTreeNode parent = null;
-        BinaryTreeNode cur = root;
+        TreeNode parent = null;
+        TreeNode cur = root;
         while(cur != null){
             if(cur.val > val){
                 parent = cur;

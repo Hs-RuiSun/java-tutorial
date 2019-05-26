@@ -11,7 +11,7 @@ public class LeetCode {
     @Test
     public void test() {
         int[] data = new int[]{10,5,15,3,7,18};
-        BinaryTreeNode root = BinaryTree.buildBinaryTree(data);
+        TreeNode root = BinaryTree.buildBinaryTree(data);
         assertEquals(37, rangeSumBST(root, 5, 15));
         assertEquals(25, rangeSumBST(root, 10, 15));
         assertEquals(33, rangeSumBST(root, 15, 18));
@@ -19,9 +19,9 @@ public class LeetCode {
         assertEquals(15, rangeSumBST(root, 3, 7));
     }
 
-    private static int rangeSumBST(BinaryTreeNode root, int L, int R) {
+    private static int rangeSumBST(TreeNode root, int L, int R) {
         int sum = 0;
-        Deque<BinaryTreeNode> deque = new ArrayDeque<>();
+        Deque<TreeNode> deque = new ArrayDeque<>();
         deque.push(root);
         while (!deque.isEmpty()){
             root = deque.poll();
