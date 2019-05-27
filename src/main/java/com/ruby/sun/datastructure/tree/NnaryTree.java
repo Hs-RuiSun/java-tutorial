@@ -1,27 +1,27 @@
-package com.ruby.sun.datastructure;
+package com.ruby.sun.datastructure.tree;
 
 import java.util.*;
 
 public class NnaryTree {
     public static void main(String[] args) {
-        Node node5 = new Node(0, null);
-        Node node6 = new Node(6, null);
+        NnaryTreeNode NnaryTreeNode5 = new NnaryTreeNode(0, null);
+        NnaryTreeNode NnaryTreeNode6 = new NnaryTreeNode(6, null);
 
-        Node node3 = new Node(3, Collections.singletonList(node6));
-        Node node4 = new Node(5, null);
-        Node node2 = new Node(10, Arrays.asList(node4, node5));
-        Node root = new Node(1, Arrays.asList(node2, node3));
+        NnaryTreeNode NnaryTreeNode3 = new NnaryTreeNode(3, Collections.singletonList(NnaryTreeNode6));
+        NnaryTreeNode NnaryTreeNode4 = new NnaryTreeNode(5, null);
+        NnaryTreeNode NnaryTreeNode2 = new NnaryTreeNode(10, Arrays.asList(NnaryTreeNode4, NnaryTreeNode5));
+        NnaryTreeNode root = new NnaryTreeNode(1, Arrays.asList(NnaryTreeNode2, NnaryTreeNode3));
         LinkedList<Integer> solution = new LinkedList<>();
         System.out.println(levelOrder(root));
     }
 
-    public static List<List<Integer>> levelOrder(Node root) {
+    public static List<List<Integer>> levelOrder(NnaryTreeNode root) {
         List<List<Integer>> solution = new ArrayList<>();
         if(root == null){
             return solution;
         }
-        Deque<Node> parentDeque = new LinkedList<>();
-        Deque<Node> childrenDeque = new LinkedList<>();
+        Deque<NnaryTreeNode> parentDeque = new LinkedList<>();
+        Deque<NnaryTreeNode> childrenDeque = new LinkedList<>();
         parentDeque.push(root);
         solution.add(Collections.singletonList(root.val));
         List<Integer> level = new ArrayList<>();
@@ -45,39 +45,39 @@ public class NnaryTree {
         return solution;
     }
 
-    public static List<Integer> postOrderRecursive(Node root, List<Integer> solution){
+    public static List<Integer> postOrderRecursive(NnaryTreeNode root, List<Integer> solution){
         if(root != null) {
-            List<Node> currentNodeChildren = root.children;
-            for(int i = 0; i < currentNodeChildren.size(); i++ ) {
-                postOrderRecursive(currentNodeChildren.get(i), solution );
+            List<NnaryTreeNode> currentNnaryTreeNodeChildren = root.children;
+            for(int i = 0; i < currentNnaryTreeNodeChildren.size(); i++ ) {
+                postOrderRecursive(currentNnaryTreeNodeChildren.get(i), solution );
             }
             solution.add(root.val);
         }
         return solution;
     }
 
-    public static List<Integer> postorder(Node root){
+    public static List<Integer> postorder(NnaryTreeNode root){
         LinkedList<Integer> list = new LinkedList<>();
         if(root == null)
             return list;
-        Stack<Node> stack = new Stack<>();
+        Stack<NnaryTreeNode> stack = new Stack<>();
         stack.push(root);
         while(!stack.isEmpty()){
-            Node node = stack.pop();
-            list.addFirst(node.val);
-            if(node.children != null) {
-                node.children.forEach(stack::push);
+            NnaryTreeNode NnaryTreeNode = stack.pop();
+            list.addFirst(NnaryTreeNode.val);
+            if(NnaryTreeNode.children != null) {
+                NnaryTreeNode.children.forEach(stack::push);
             }
         }
         return list;
     }
 
-    public static List<Integer> preorder(Node root){
+    public static List<Integer> preorder(NnaryTreeNode root){
         List<Integer> list = new ArrayList<>();
         if(root == null){
             return list;
         }
-        Deque<Node> deque = new ArrayDeque<>();
+        Deque<NnaryTreeNode> deque = new ArrayDeque<>();
         deque.push(root);
         while (!deque.isEmpty()){
             root = deque.pollLast();
