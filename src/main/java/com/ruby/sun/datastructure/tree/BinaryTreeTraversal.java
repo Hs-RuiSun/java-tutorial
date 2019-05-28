@@ -2,46 +2,98 @@ package com.ruby.sun.datastructure.tree;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import org.junit.Test;
 
 public class BinaryTreeTraversal {
 	@Test
 	public void test() {
-		TreeNode root = BinaryTree.buildBinaryTree(new int[] {4,5,1,7,2,3});
-		Integer[] output = new Integer[6];
-		assertArrayEquals(new Integer[] {4,1,2,3,5,7}, preorderTraversal(root).toArray(output));
-		
+//		TreeNode root = BinaryTree.buildBinaryTree(new int[] {4,5,1,7,2,3});
+//		Integer[] output = new Integer[6];
+//		assertArrayEquals(new Integer[] {4,1,2,3,5,7}, preorderTraversal(root).toArray(output));
+		TreeNode root = BinaryTree.buildBinaryTree(new int[] {5,9,4,3,20,7,15});
+		levelOrderBottom(root);
 	}
+	//https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    	List<List<Integer>> list = new ArrayList<>();
+        return list;
+    }
+
+    //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+		List<List<Integer>> list = new ArrayList<>();
+		if(root == null){
+			return new LinkedList<>();
+		}
+		Deque<TreeNode> deque = new LinkedList<>();
+		List<Integer> levelList = new ArrayList<>();
+		deque.push(root);
+		while(!deque.isEmpty()){
+			int size = deque.size();
+			for(int i=0;i < size; i++){
+				root = deque.pollLast();
+				levelList.add(root.val);
+				if(root.left != null) {
+					deque.push(root.left);
+				}
+				if(root.right != null) {
+					deque.push(root.right);
+				}
+			}
+			list.add(0, levelList);  //this is a magic method
+			levelList = new ArrayList<>();
+		}
+		return list;
+	}
+
 	//https://leetcode.com/problems/binary-tree-level-order-traversal/
 	public static List<List<Integer>> levelOrder(TreeNode root) {
 		List<List<Integer>> list = new ArrayList<>();
-        return list;
-        
-    }
-	
-	//https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-    	List<List<Integer>> list = new ArrayList<>();
-        return list;
-    }
-    
-    //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-    	List<List<Integer>> list = new ArrayList<>();
-        return list;
-    }
-	public static List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        return list;
-    }
-	
+		if(root == null){
+			return list;
+		}
+		Deque<TreeNode> deque = new LinkedList<>();
+		List<Integer> levelList = new ArrayList<>();
+		deque.push(root);
+		while(!deque.isEmpty()){
+			int size = deque.size();
+			for(int i=0;i < size; i++){
+				root = deque.pollLast();
+				levelList.add(root.val);
+				if(root.left != null) {
+					deque.push(root.left);
+				}
+				if(root.right != null) {
+					deque.push(root.right);
+				}
+			}
+			list.add(levelList);
+			levelList = new ArrayList<>();
+		}
+		return list;
+	}
+	public static List<List<Integer>> levelOrderRecursive(TreeNode root) { // this is faster
+		List<List<Integer>> list=new ArrayList<>();
+		if(root!=null){
+			traverseTree(root,0, list);
+		}
+		return list;
+	}
+	private static void traverseTree(TreeNode node,int depth, List<List<Integer>> list){
+		if(node == null){
+			return;
+		}
+		if(list.size() == depth){
+			list.add(new ArrayList<>());
+		}
+		list.get(depth).add(node.val);
+		traverseTree(node.left,depth+1, list);
+		traverseTree(node.right,depth+1, list);
+	}
+
+    //https://leetcode.com/problems/binary-tree-preorder-traversal/
 	public static List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
 		Deque<TreeNode> stack = new LinkedList<>();
@@ -99,23 +151,23 @@ public class BinaryTreeTraversal {
 		}
 	}
 
-//	private static void levelOrder(TreeNode root) {
-//		Queue<TreeNode> queue = new ArrayDeque<>();
-//		TreeNode node = root;
-//		if (node == null) {
-//			return;
-//		}
-//		System.out.print("\nlevelOrder: ");
-//		while (node != null || !queue.isEmpty()) {
-//			System.out.print(node.val + " ");
-//			if (node.left != null) {
-//				queue.offer(node.left);
-//			}
-//			if (node.right != null) {
-//				queue.offer(node.right);
-//			}
-//			node = queue.poll();
-//		}
-//	}
+	private static void levelOrderTr(TreeNode root) {
+		Queue<TreeNode> queue = new ArrayDeque<>();
+		TreeNode node = root;
+		if (node == null) {
+			return;
+		}
+		System.out.print("\nlevelOrder: ");
+		while (node != null || !queue.isEmpty()) {
+			System.out.print(node.val + " ");
+			if (node.left != null) {
+				queue.offer(node.left);
+			}
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
+			node = queue.poll();
+		}
+	}
 
 }
