@@ -30,8 +30,34 @@ public class Array {
 //				new int[][] { { 1, 0 }}));
 //		assertArrayEquals(new int[] { 0 }, sumEvenAfterQueries(new int[] { 2 },
 //				new int[][] { { 1, 0 }}));
-		assertArrayEquals(new int[] {-1,3,-1}, nextGreaterElement(new int[] { 4,1,2}, new int[]{1,3,4,2}));
-		assertArrayEquals(new int[] {-1}, nextGreaterElement(new int[] {2}, new int[]{2}));
+//		assertArrayEquals(new int[] {-1,3,-1}, nextGreaterElement(new int[] { 4,1,2}, new int[]{1,3,4,2}));
+//		assertArrayEquals(new int[] {-1}, nextGreaterElement(new int[] {2}, new int[]{2}));
+		assertArrayEquals(new int[] {2,3,3,-1}, nextGreaterElement(new int[] {1,2,1,3}));
+		
+	}
+	
+	public static int[] nextGreaterElement(int[] nums) {
+		int[] output = new int[nums.length];
+		Arrays.fill(output, -1);
+		for(int i=0; i<nums.length; i++) {
+			int j = i+1;
+			while(j<nums.length && nums[j]<=nums[i]) {
+				j++;
+			}
+			if(j < nums.length) {
+				output[i] = nums[j];
+			} else {
+				j = 0;
+				while(j<i && nums[j]<=nums[i]) {
+					j++;
+				}
+				if(j < i) {
+					output[i] = nums[j];
+				}
+			}
+			
+		}
+		return output;
 	}
 	
 	public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
