@@ -45,6 +45,7 @@ public class NnaryTree {
         return solution;
     }
 
+    //https://leetcode.com/problems/n-ary-tree-postorder-traversal/
     public static List<Integer> postOrderRecursive(NnaryTreeNode root, List<Integer> solution){
         if(root != null) {
             List<NnaryTreeNode> currentNnaryTreeNodeChildren = root.children;
@@ -55,7 +56,6 @@ public class NnaryTree {
         }
         return solution;
     }
-
     public static List<Integer> postorder(NnaryTreeNode root){
         LinkedList<Integer> list = new LinkedList<>();
         if(root == null)
