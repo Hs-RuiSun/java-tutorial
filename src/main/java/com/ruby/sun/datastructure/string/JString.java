@@ -6,9 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -62,17 +60,55 @@ public class JString {
 //        assertTrue(buddyStrings("aaaabcaeef", "aaaaecabef"));
 //        assertTrue(buddyStrings("aaaabcaeef", "aaaaecaebf"));
 //        assertFalse(buddyStrings("abcd","badc"));
-        assertTrue(validPalindrome("abcefeca"));
-        assertTrue(validPalindrome("abcefecbca"));
-        assertTrue(validPalindrome("aba"));
-        assertTrue(validPalindrome("abba"));
-        assertTrue(validPalindrome("abca"));
-        assertTrue(validPalindrome("bc"));
-        assertTrue(validPalindrome("bbc"));
-        assertFalse(validPalindrome("abceebca"));
-        assertTrue(validPalindrome("abcecba"));
+//        assertTrue(validPalindrome("abcefeca"));
+//        assertTrue(validPalindrome("abcefecbca"));
+//        assertTrue(validPalindrome("aba"));
+//        assertTrue(validPalindrome("abba"));
+//        assertTrue(validPalindrome("abca"));
+//        assertTrue(validPalindrome("bc"));
+//        assertTrue(validPalindrome("bbc"));
+//        assertFalse(validPalindrome("abceebca"));
+//        assertTrue(validPalindrome("abcecba"));
+        assertEquals(3, romanToInt("III"));
+        assertEquals(58, romanToInt("LVIII"));
+        assertEquals(1994, romanToInt("MCMXCIV"));
+        assertEquals(9, romanToInt("IX"));
+        assertEquals(4, romanToInt("IV"));
+        assertEquals(900, romanToInt("CM"));
     }
 
+    //https://leetcode.com/problems/roman-to-integer/
+    public int romanToInt(String s) {
+        int i = 0;
+        int output = 0;
+        int last = 0;
+        int cur;
+        Map<Character, Integer> map = getRomanMap();
+        while(i < s.length()){
+            cur = map.get(s.charAt(i));
+            if(last==0 || cur <= last){
+                output += cur;
+                last = cur;
+            } else {
+                output = output + cur - last;
+                last = 0;
+            }
+            i++;
+        }
+        return output;
+    }
+
+    private Map<Character, Integer> getRomanMap(){
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        return map;
+    }
     //https://leetcode.com/problems/valid-palindrome-ii/
     public boolean validPalindrome(String s) {
         int i = 0;

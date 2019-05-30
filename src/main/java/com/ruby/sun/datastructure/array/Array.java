@@ -35,6 +35,7 @@ public class Array {
 		assertArrayEquals(new int[] {2,3,3,-1}, nextGreaterElement(new int[] {1,2,1,3}));
 		
 	}
+
 	
 	public static int[] nextGreaterElement(int[] nums) {
 		int[] output = new int[nums.length];
