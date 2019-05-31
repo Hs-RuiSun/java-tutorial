@@ -77,7 +77,18 @@ public class JCollection {
         assertEquals(4, numbers.size());
         assertArrayEquals(new Object[]{1,2,3,4}, numbers.toArray()); //sort automatically ??
 
-        //Set<String> set = new HashSet<>(){{add("a"); add("b"); add("c");}};
+        new HashSet<>(Arrays.asList("a", "b"));
+    }
+
+    @Test
+    public void convert(){
+        String[] names1 = new String[] {"Ava", "Emma", "Olivia"};
+        String[] names2 = new String[] {"Olivia", "Sophia", "Emma"};
+        Set<String> set = new HashSet<>(Arrays.asList(names1));
+        set.addAll(Arrays.asList(names2));
+        String[] output = new String[set.size()];
+        set.toArray(output);
+        assertArrayEquals(new String[]{"Ava","Emma","Olivia","Sophia"}, output);
     }
 
     @Test
@@ -94,7 +105,7 @@ public class JCollection {
     public void testSort(){
         List<String> names = Arrays.asList("Paul", "Jane", "Michaela", "Sam");
         Collections.sort(names, Comparator.naturalOrder());
-        Collections.sort(names, Comparator.reverseOrder());
+        names.sort(Comparator.reverseOrder());
         Collections.sort(names);
     }
 
