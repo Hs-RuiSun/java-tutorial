@@ -2,6 +2,8 @@ package com.ruby.sun.datastructure;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 //https://leetcode.com/tag/linked-list/
@@ -9,18 +11,82 @@ public class JLinkedList {
     @Test
     public void test(){
         ListNode head = new ListNode(1);
-        ListNode node1 = new ListNode(2);
-        ListNode node2 = new ListNode(3);
-        ListNode node3 = new ListNode(4);
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(1);
+        ListNode node3 = new ListNode(1);
+        ListNode node4 = new ListNode(5);
+        ListNode node5 = new ListNode(6);
         head.next = node1;
         node1.next = node2;
         node2.next = node3;
-        reverseBetween(head, 1, 4);
+//        node3.next = node4;
+        //node4.next = node5;
+        ListNode root = deleteDuplicates(head);
+        System.out.println(root.val);
     }
-
-    /**
-     * Input: 1->2->3->4->5->NULL, m = 2, n = 4
-     * Output: 1->4->3->2->5->NULL*/
+    //https://leetcode.com/problems/linked-list-cycle-ii/
+    public ListNode detectCycle(ListNode head) {
+    	ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null) {
+        	slow = slow.next;
+        	fast = fast.next.next;
+        	if(slow == fast) {
+        		break;
+        	}
+        }
+        if(fast==null || fast.next==null) return null;
+        slow = head;
+        while(slow != fast) {
+        	slow = slow.next;
+        	fast = fast.next;
+        }
+        return slow;
+    }
+    //https://leetcode.com/problems/linked-list-cycle/
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null) {
+        	slow = slow.next;
+        	fast = fast.next.next;
+        	if(slow == fast) {
+        		return true;
+        	}
+        }
+        return false;
+    }
+    //https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) return null;
+        ListNode root = head;
+        while(root!=null && root.next!=null) {
+        	while(root.next!=null && root.val==root.next.val) {
+        		root.next = root.next.next;
+        	}
+        	root = root.next;
+        }
+        return head;
+    }
+    //https://leetcode.com/problems/delete-node-in-a-linked-list/
+    public void deleteNode(ListNode node) {
+    	node.val = node.next.val;
+    	node.next = node.next.next;
+    }
+    //https://leetcode.com/problems/middle-of-the-linked-list/
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null) {
+        	if(fast.next == null) {
+        		return slow;
+        	}
+        	slow = slow.next;
+        	fast = fast.next;
+        	fast = fast.next;
+        }
+        return slow;
+    }
     //https://leetcode.com/problems/reverse-linked-list-ii/
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if(head==null || head.next == null) return head;
