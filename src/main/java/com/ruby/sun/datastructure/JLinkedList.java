@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
+import java.util.*;
 
 //https://leetcode.com/tag/linked-list/
 public class JLinkedList {
@@ -20,13 +20,63 @@ public class JLinkedList {
         node1.next = node2;
         l2.next = node3;
         node3.next = node4;
-        addTwoNumbers(head, l2);
+//        addTwoNumbers(head, l2);
+//        fizzBuzz(15);
+        String[] domains = new String[]{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
+        subdomainVisits(domains);
     }
 
     //https://leetcode.com/problems/merge-k-sorted-lists/
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode output = null;
         return output;
+    }
+
+    //https://leetcode.com/problems/subdomain-visit-count/
+    private Map<String, Integer> map;
+    public List<String> subdomainVisits(String[] cpdomains) {
+        map = new HashMap<>(cpdomains.length);
+        for (String cpdomain : cpdomains){
+            int indexOfSpace = cpdomain.indexOf(' ');
+            int num = Integer.parseInt(cpdomain.substring(0, indexOfSpace));
+            String domains = cpdomain.substring(indexOfSpace + 1);
+            addToMap(domains, num);
+            int indexOfPeriod;
+            while ((indexOfPeriod = domains.indexOf('.')) > -1){
+                domains = domains.substring(indexOfPeriod+1);
+                addToMap(domains, num);
+            }
+        }
+        List<String> list = new ArrayList<>(map.size());
+        for (String domain : map.keySet()) {
+            list.add(map.get(domain).toString() + " " + domain);
+        }
+        return list;
+    }
+    private void addToMap(String key, int value) {
+        if (map.containsKey(key)) {
+            map.put(key, value + map.get(key));
+        } else {
+            map.put(key, value);
+        }
+    }
+
+    //https://leetcode.com/problems/fizz-buzz/
+    public List<String> fizzBuzz(int n) {
+        List<String> list = new LinkedList<>();
+        list.add("1");
+        for(int i=2;i<=n;i++){
+            if(i%3==0 && i%5==0){
+                list.add("FizzBuzz");
+            } else if(i%3 == 0){
+                list.add("Fizz");
+            } else if(i%5 == 0){
+                list.add("Buzz");
+            } else {
+                list.add(String.valueOf(i));
+            }
+        }
+        return list;
     }
 
     //https://leetcode.com/problems/add-two-numbers/
