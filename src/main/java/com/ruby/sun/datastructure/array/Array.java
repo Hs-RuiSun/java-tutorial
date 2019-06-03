@@ -32,10 +32,39 @@ public class Array {
 //				new int[][] { { 1, 0 }}));
 //		assertArrayEquals(new int[] {-1,3,-1}, nextGreaterElement(new int[] { 4,1,2}, new int[]{1,3,4,2}));
 //		assertArrayEquals(new int[] {-1}, nextGreaterElement(new int[] {2}, new int[]{2}));
-		assertArrayEquals(new int[] {2,3,3,-1}, nextGreaterElement(new int[] {1,2,1,3}));
-		
+//		assertArrayEquals(new int[] {2,3,3,-1}, nextGreaterElement(new int[] {1,2,1,3}));
+		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{2,7,11,15},9));
+		assertArrayEquals(new int[]{1,2}, twoSum(new int[]{3,2,4},6));
+		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{3,3},6));
 	}
 
+	//https://leetcode.com/problems/trapping-rain-water/
+	public int trap(int[] height) {
+		if (height.length < 3) return 0;
+		int output = 0;
+		for(int i=1; i<height.length-1; i++){
+			if(height[i-1] > 0){
+				while (i < height.length && height[i]==0){
+					i++;
+				}
+				if(i == height.length) return output;
+
+			}
+		}
+		return output;
+	}
+
+	//https://leetcode.com/problems/two-sum/
+	public int[] twoSum(int[] nums, int target) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for(int i=0; i<nums.length; i++){
+			if(map.containsKey(target-nums[i])){
+				return new int[]{map.get(target-nums[i]), i};
+			}
+			map.put(nums[i], i);
+		}
+		return null;
+	}
 	
 	public static int[] nextGreaterElement(int[] nums) {
 		int[] output = new int[nums.length];

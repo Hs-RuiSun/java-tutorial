@@ -59,8 +59,10 @@ public class JCollection {
     }
 
     @Test
-    public void testMap(){
-
+    public void testIterateMap(){
+        Map<String, String> map = new HashMap<>();
+        map.put("A", "AAA");
+        map.forEach((k,v)->System.out.println(v));
     }
 
     @Test

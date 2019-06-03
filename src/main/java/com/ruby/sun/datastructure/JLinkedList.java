@@ -8,14 +8,62 @@ import java.util.List;
 public class JLinkedList {
     @Test
     public void test(){
-        ListNode head = new ListNode(1);
-        ListNode node1 = new ListNode(2);
-        ListNode node2 = new ListNode(3);
-        ListNode node3 = new ListNode(4);
+        ListNode head = new ListNode(9);
+        ListNode node1 = new ListNode(9);
+        ListNode node2 = new ListNode(9);
+        ListNode l2 = new ListNode(9);
+        ListNode node3 = new ListNode(9);
+        ListNode node4 = new ListNode(9);
         head.next = node1;
         node1.next = node2;
-        node2.next = node3;
-        reverseBetween(head, 1, 4);
+        l2.next = node3;
+        node3.next = node4;
+        addTwoNumbers(head, l2);
+    }
+
+    //https://leetcode.com/problems/merge-k-sorted-lists/
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode output = null;
+        return output;
+    }
+
+    //https://leetcode.com/problems/add-two-numbers/
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode output = null;
+        ListNode root = null;
+        int sum = 0;
+        while (l1!=null && l2!=null){
+            sum = sum/10 + l1.val + l2.val;
+            if(root == null){
+                root = new ListNode(sum % 10);
+                output = root;
+            } else {
+                root.next = new ListNode(sum % 10);
+                root = root.next;
+            }
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        if(l1 != null){
+            while (l1 != null){
+                sum = sum/10 + l1.val;
+                root.next = new ListNode(sum % 10);
+                root = root.next;
+                l1 = l1.next;
+            }
+        }
+        if(l2 != null){
+            while (l2 != null){
+                sum = sum/10 + l2.val;
+                root.next = new ListNode(sum % 10);
+                root = root.next;
+                l2 = l2.next;
+            }
+        }
+        if(sum/10 != 0){
+            root.next = new ListNode(sum/10);
+        }
+        return output;
     }
 
     /**
