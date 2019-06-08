@@ -3,4 +3,4 @@ bin
 .idea/
 *.iml
 *.classpath
-*.DB_Store
+*.DS_Store
