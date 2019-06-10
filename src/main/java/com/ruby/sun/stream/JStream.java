@@ -68,6 +68,9 @@ public class JStream {
         assertEquals("start Riggs, Rowling, Rowling, Seuss end",
                 books.stream().map(Book::getAuthorLName).collect(joining(", ", "start ", " end")));
 
+        Book[] objects = books.stream().filter(book -> book.getPages()>2).toArray(Book[]::new);
+        assertEquals(2, objects.length);
+
         assertEquals(3, books.stream().map(Book::getAuthorLName).collect(toSet()).size());
 
         assertEquals(4, books.stream().map(book -> book.getAuthorLName().toUpperCase()).collect(toList()).size());

@@ -74,10 +74,34 @@ public class JString {
 //        assertEquals(9, romanToInt('IX'));
 //        assertEquals(4, romanToInt('IV'));
 //        assertEquals(900, romanToInt('CM'));
-    	char[] array = new char[] {'h','e','l','l','o'};
-    	reverseString(array);
-    	assertArrayEquals(array, new char[] {'o','l','l','e','h'});
+//    	char[] array = new char[] {'h','e','l','l','o'};
+//    	reverseString(array);
+//    	assertArrayEquals(array, new char[] {'o','l','l','e','h'});
+        numUniqueEmails(new String[]{"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"});
     }
+
+    //https://leetcode.com/problems/unique-email-addresses/
+    public int numUniqueEmails(String[] emails) {
+        Set<String> set = new HashSet<>();
+        StringBuilder sb;
+        for(String email : emails){
+            String localName = email.substring(0, email.indexOf('@'));
+            int index = 0;
+            if ((index=localName.indexOf("+"))!=-1){
+                localName = localName.substring(0, index);
+            }
+            sb = new StringBuilder();
+            while ((index=localName.indexOf("."))!=-1){
+                sb.append(localName, 0, index);
+                localName = localName.substring(index+1);
+            }
+            sb.append(localName);
+            sb.append(email, email.indexOf('@'), email.length());
+            set.add(sb.toString());
+        }
+        return set.size();
+    }
+
     public String reverseStr(String s, int k) {
         return s;
     }
