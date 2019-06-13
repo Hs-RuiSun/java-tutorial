@@ -1,6 +1,7 @@
 package com.ruby.sun.stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.*;
 
 import java.util.*;
 import java.util.function.Function;
@@ -10,8 +11,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JStream {
     private List<Book> books = Arrays.asList(new Book("book1", "Ra", "Riggs", 1),

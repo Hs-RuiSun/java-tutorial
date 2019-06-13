@@ -1,10 +1,10 @@
 package com.ruby.sun.collection;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JArrays {
     @Test

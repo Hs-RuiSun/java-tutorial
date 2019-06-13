@@ -1,8 +1,6 @@
 package com.ruby.sun.datastructure;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.*;
 
 import java.util.*;
 

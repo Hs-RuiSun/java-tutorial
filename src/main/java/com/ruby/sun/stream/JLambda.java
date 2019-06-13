@@ -1,16 +1,14 @@
 package com.ruby.sun.stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertTrue;
 
 /**
  * Lambda

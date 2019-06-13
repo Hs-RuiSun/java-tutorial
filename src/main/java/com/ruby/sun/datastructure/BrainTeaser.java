@@ -1,9 +1,9 @@
 package com.ruby.sun.datastructure;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BrainTeaser {
     @Test

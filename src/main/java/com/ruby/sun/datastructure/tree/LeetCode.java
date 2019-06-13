@@ -1,11 +1,12 @@
 package com.ruby.sun.datastructure.tree;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LeetCode {
     @Test

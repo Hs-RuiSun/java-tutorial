@@ -1,12 +1,10 @@
 package com.ruby.sun.datastructure;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HashTable {
     @Test

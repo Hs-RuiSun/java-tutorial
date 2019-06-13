@@ -1,6 +1,6 @@
 package com.ruby.sun.datastructure.array;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 public class Greedy {
     @Test

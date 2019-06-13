@@ -1,12 +1,9 @@
 package com.ruby.sun.datastructure;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.*;
 
-import java.util.concurrent.CountDownLatch;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Number {
     public void primeNumber(int n){

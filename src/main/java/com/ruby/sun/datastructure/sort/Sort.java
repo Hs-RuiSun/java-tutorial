@@ -1,8 +1,8 @@
 package com.ruby.sun.datastructure.sort;
 
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.jupiter.api.*;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Sort {
     @Test

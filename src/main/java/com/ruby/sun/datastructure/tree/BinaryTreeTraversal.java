@@ -1,10 +1,10 @@
 package com.ruby.sun.datastructure.tree;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 public class BinaryTreeTraversal {
 	@Test

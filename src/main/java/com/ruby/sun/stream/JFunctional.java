@@ -1,12 +1,12 @@
 package com.ruby.sun.stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Optional;
 import java.util.function.*;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * one interface with only one method

@@ -1,8 +1,18 @@
 package com.ruby.sun.jclass;
 
-import java.nio.ByteBuffer;
+
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JPrimitiveType {
+    @Test
+    public void testEqual(){
+        Integer num1 = 3;
+        Integer num2 = 3;
+        assertEquals(num1, num2);
+        assertSame(num1, num2);
+    }
     public static void main(String[] args) {
         System.out.println(String.format("%06X", 3950690));
         System.out.println(Integer.parseInt("2C4862", 16));

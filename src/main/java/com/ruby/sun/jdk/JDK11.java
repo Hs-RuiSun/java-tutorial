@@ -1,16 +1,14 @@
 package com.ruby.sun.jdk;
 
 import com.ruby.sun.stream.Book;
-import org.junit.Test;
-
+import org.junit.jupiter.api.*;
 import java.util.List;
 import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JDK11 {
 //    @Test

@@ -1,6 +1,6 @@
 package com.ruby.sun.exception;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.util.Scanner;

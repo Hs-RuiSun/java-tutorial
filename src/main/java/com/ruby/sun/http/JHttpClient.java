@@ -27,8 +27,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,10 +35,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JHttpClient {
     private static Logger logger = LogManager.getLogger(JHttpClient.class);
@@ -50,7 +48,7 @@ public class JHttpClient {
 
     private static String FLIGHT_PLANE_XML = "C:\\Users\\ruby.sun\\Downloads\\flight-plan.xml";
 
-    @Ignore
+    @Disabled
     @Test
     public void testFlightPlanApi() throws ClientProtocolException, IOException {
         HttpClient client = HttpClientBuilder.create().build();
@@ -83,7 +81,7 @@ public class JHttpClient {
         assertEquals(HttpStatus.SC_OK, statusCode);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testLogin() throws ClientProtocolException, IOException {
         HttpClient client = HttpClientBuilder.create().build();
@@ -120,7 +118,7 @@ public class JHttpClient {
         String responseJSON = EntityUtils.toString(response.getEntity());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testAuthenticate() throws ClientProtocolException, IOException {
         CredentialsProvider provider = new BasicCredentialsProvider();

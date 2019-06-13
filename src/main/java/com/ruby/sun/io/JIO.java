@@ -1,7 +1,6 @@
 package com.ruby.sun.io;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

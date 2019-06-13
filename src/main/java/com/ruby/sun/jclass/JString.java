@@ -1,6 +1,6 @@
 package com.ruby.sun.jclass;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.BufferedReader;
 import java.io.File;

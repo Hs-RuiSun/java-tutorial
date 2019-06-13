@@ -1,12 +1,10 @@
 package com.ruby.sun.jclass;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 public class Regex {
     private static final String URL_REGEX = "\"url\":\"(.*?)\"";
