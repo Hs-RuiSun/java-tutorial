@@ -32,9 +32,10 @@ public class Array {
 //		assertArrayEquals(new int[] {-1,3,-1}, nextGreaterElement(new int[] { 4,1,2}, new int[]{1,3,4,2}));
 //		assertArrayEquals(new int[] {-1}, nextGreaterElement(new int[] {2}, new int[]{2}));
 //		assertArrayEquals(new int[] {2,3,3,-1}, nextGreaterElement(new int[] {1,2,1,3}));
-		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{2,7,11,15},9));
-		assertArrayEquals(new int[]{1,2}, twoSum(new int[]{3,2,4},6));
-		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{3,3},6));
+//		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{2,7,11,15},9));
+//		assertArrayEquals(new int[]{1,2}, twoSum(new int[]{3,2,4},6));
+//		assertArrayEquals(new int[]{0,1}, twoSum(new int[]{3,3},6));
+
 	}
 
 	//https://leetcode.com/problems/trapping-rain-water/

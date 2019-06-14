@@ -75,6 +75,11 @@ public class JString {
         numUniqueEmails(new String[]{"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"});
     }
 
+    //https://leetcode.com/problems/zigzag-conversion/
+    public String convert(String s, int numRows) {
+
+    }
+
     //https://leetcode.com/problems/unique-email-addresses/
     public int numUniqueEmails(String[] emails) {
         Set<String> set = new HashSet<>();
