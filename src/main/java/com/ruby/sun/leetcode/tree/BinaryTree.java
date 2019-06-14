@@ -1,4 +1,4 @@
-package com.ruby.sun.datastructure.tree;
+package com.ruby.sun.leetcode.tree;
 
 public class BinaryTree {
     public static void main(String[] args) {

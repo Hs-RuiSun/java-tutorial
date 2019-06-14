@@ -1,4 +1,4 @@
-package com.ruby.sun.datastructure.sort;
+package com.ruby.sun.leetcode.sort;
 
 import org.junit.jupiter.api.*;
 

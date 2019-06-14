@@ -1,4 +1,4 @@
-package com.ruby.sun.datastructure;
+package com.ruby.sun.leetcode;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;

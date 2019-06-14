@@ -1,4 +1,4 @@
-package com.ruby.sun.datastructure.array;
+package com.ruby.sun.leetcode.array;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.HashMap;

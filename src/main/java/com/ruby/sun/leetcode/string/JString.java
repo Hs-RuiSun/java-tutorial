@@ -1,4 +1,4 @@
-package com.ruby.sun.datastructure.string;
+package com.ruby.sun.leetcode.string;
 
 import org.junit.jupiter.api.*;
 

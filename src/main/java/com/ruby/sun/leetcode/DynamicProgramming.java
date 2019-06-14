@@ -1,7 +1,6 @@
-package com.ruby.sun.datastructure;
+package com.ruby.sun.leetcode;
 
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class DynamicProgramming {
     @Test

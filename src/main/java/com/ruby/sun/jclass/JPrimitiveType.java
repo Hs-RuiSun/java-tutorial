@@ -12,7 +12,19 @@ public class JPrimitiveType {
         Integer num2 = 3;
         assertEquals(num1, num2);
         assertSame(num1, num2);
+
+        String str1 = "string";
+        String str2 = "string";
+        assertEquals(str1, str2);
+        assertSame(str1, str2);
+
+        String string1 = new String("string");
+        String string2 = new String("string");
+        assertEquals(string1, string2);
+        assertNotSame(string1, string2);
+        assertFalse(string1 == string2);
     }
+
     public static void main(String[] args) {
         System.out.println(String.format("%06X", 3950690));
         System.out.println(Integer.parseInt("2C4862", 16));
