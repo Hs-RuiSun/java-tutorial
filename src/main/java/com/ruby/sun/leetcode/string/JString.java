@@ -1,8 +1,10 @@
 package com.ruby.sun.leetcode.string;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JString {
     @Test
@@ -72,12 +74,33 @@ public class JString {
 //    	char[] array = new char[] {'h','e','l','l','o'};
 //    	reverseString(array);
 //    	assertArrayEquals(array, new char[] {'o','l','l','e','h'});
-        numUniqueEmails(new String[]{"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"});
+//        numUniqueEmails(new String[]{"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"});
+        assertTrue("PAHNAPLSIIGYIR".equals(convert("PAYPALISHIRING", 3)));
+        assertTrue("PINALSIGYAHRPI".equals(convert("PAYPALISHIRING", 4)));
+        assertTrue("A".equals(convert("A", 1)));
+        assertTrue("AB".equals(convert("AB", 1)));
     }
 
     //https://leetcode.com/problems/zigzag-conversion/
     public String convert(String s, int numRows) {
-
+        if(s==null || s.length()==0 || numRows==1) return s;
+        char[] array = s.toCharArray();
+        char[] output = new char[array.length];
+        int count = 0;
+        for(int i=0;i<numRows;i++){
+            int j = i;
+            while (j < array.length){
+                output[count++] = array[j];
+                if(i != 0 && i != numRows-1) {
+                    int next = j + 2*(numRows-i-1);
+                    if(next < array.length) {
+                        output[count++] = array[next];
+                    }
+                }
+                j = j + 2 * numRows - 2;
+            }
+        }
+        return String.valueOf(output);
     }
 
     //https://leetcode.com/problems/unique-email-addresses/
