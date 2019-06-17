@@ -56,13 +56,6 @@ public class JCollection {
     }
 
     @Test
-    public void testIterateMap(){
-        Map<String, String> map = new HashMap<>();
-        map.put("A", "AAA");
-        map.forEach((k,v)->System.out.println(v));
-    }
-
-    @Test
     public void testSet(){
         List<Book> books = Arrays.asList(new Book("Miss Peregrine's Home for Peculiar Children","Ranson", "Riggs", 382),
                 new Book("Harry Potter and The Sorcerers Stone","JK", "Rowling", 411),
