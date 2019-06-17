@@ -4,24 +4,58 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 //https://leetcode.com/tag/linked-list/
 public class JLinkedList {
     @Test
     public void test(){
-        ListNode head = new ListNode(9);
-        ListNode node1 = new ListNode(9);
-        ListNode node2 = new ListNode(9);
-        ListNode l2 = new ListNode(9);
-        ListNode node3 = new ListNode(9);
-        ListNode node4 = new ListNode(9);
+        ListNode head = new ListNode(1);
+        ListNode node1 = new ListNode(2);
+        ListNode node2 = new ListNode(3);
+        ListNode node3 = new ListNode(2);
+        ListNode node4 = new ListNode(1);
         head.next = node1;
         node1.next = node2;
-        l2.next = node3;
+        node2.next = node3;
         node3.next = node4;
-//        addTwoNumbers(head, l2);
-//        fizzBuzz(15);
-        String[] domains = new String[]{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
-        subdomainVisits(domains);
+        assertTrue(isPalindrome(head));
+        assertTrue(isPalindrome(node4));
+        assertFalse(isPalindrome(node3));
+    }
+
+    //https://leetcode.com/problems/palindrome-linked-list/
+    public boolean isPalindrome(ListNode head) {
+        if(head == null) return true;
+        if(head.next == null) return true;
+        int length = 0;
+        ListNode root = head;
+        while (root != null){
+            root = root.next;
+            length++;
+        }
+        ListNode last = null;
+        ListNode next = head.next;
+        int index = 0;
+        while (index < length/2){
+            head.next = last;
+            last = head;
+            head = next;
+            next = next.next;
+            index++;
+        }
+        if(length%2 != 0){
+            head = next;
+        }
+        while (last!=null && head!=null){
+            if(last.val != head.val){
+                return false;
+            }
+            last = last.next;
+            head = head.next;
+        }
+        return true;
     }
 
     //https://leetcode.com/problems/merge-k-sorted-lists/
@@ -30,33 +64,9 @@ public class JLinkedList {
         return output;
     }
 
-    //https://leetcode.com/problems/subdomain-visit-count/
-    private Map<String, Integer> map;
-    public List<String> subdomainVisits(String[] cpdomains) {
-        map = new HashMap<>(cpdomains.length);
-        for (String cpdomain : cpdomains){
-            int indexOfSpace = cpdomain.indexOf(' ');
-            int num = Integer.parseInt(cpdomain.substring(0, indexOfSpace));
-            String domains = cpdomain.substring(indexOfSpace + 1);
-            addToMap(domains, num);
-            int indexOfPeriod;
-            while ((indexOfPeriod = domains.indexOf('.')) > -1){
-                domains = domains.substring(indexOfPeriod+1);
-                addToMap(domains, num);
-            }
-        }
-        List<String> list = new ArrayList<>(map.size());
-        for (String domain : map.keySet()) {
-            list.add(map.get(domain).toString() + " " + domain);
-        }
-        return list;
-    }
-    private void addToMap(String key, int value) {
-        if (map.containsKey(key)) {
-            map.put(key, value + map.get(key));
-        } else {
-            map.put(key, value);
-        }
+    //https://leetcode.com/problems/sort-list/
+    public ListNode sortList(ListNode head) {
+        return head;
     }
 
     //https://leetcode.com/problems/fizz-buzz/
@@ -225,11 +235,6 @@ public class JLinkedList {
         }
         head.next = last;
         return head;
-    }
-
-    //https://leetcode.com/problems/palindrome-linked-list/
-    public boolean isPalindrome(ListNode head) {
-        return false;
     }
 
     public class ListNode {
